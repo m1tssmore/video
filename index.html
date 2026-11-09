@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Видео</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: #0b0b0f;
+    color: #fff;
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .player {
+    width: 100%;
+    max-width: 1100px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  }
+  video {
+    display: block;
+    width: 100%;
+    max-height: 90vh;
+    background: #000;
+  }
+  .error {
+    display: none;
+    padding: 24px;
+    text-align: center;
+    color: #ff8a8a;
+  }
+</style>
+</head>
+<body>
+  <div class="player">
+    <video id="v" controls playsinline preload="metadata">
+      <source src="video_small.mp4" type="video/mp4">
+      Ваш браузер не поддерживает видео.
+    </video>
+    <div class="error" id="err">Не удалось загрузить video_small.mp4. Проверьте, что файл лежит рядом с index.html.</div>
+  </div>
+  <script>
+    const v = document.getElementById('v');
+    const err = document.getElementById('err');
+    v.querySelector('source').addEventListener('error', () => {
+      v.style.display = 'none';
+      err.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
